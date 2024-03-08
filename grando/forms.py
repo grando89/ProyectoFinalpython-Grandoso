@@ -1,19 +1,22 @@
 from django import forms
-from .models import Cursos , Alumnos , Profesores
+from .models import Bebida_blanca , Vinos , Bebida_sa
+from django.contrib.auth.forms import UserCreationForm
 
-class CursoFormulario(forms.ModelForm):
+class Bebida_Blanca_Formulario(forms.ModelForm):
     class Meta:
-        model = Cursos
-        fields = ['nombre', 'camada',]
+        model = Bebida_blanca
+        fields = ['nombre', 'cantidad',]
         
 
-class AlumnoFormulario(forms.ModelForm):
+class VinoFormulario(forms.ModelForm):
     class Meta:
-        model = Alumnos
-        fields = ['nombre', 'apellido', 'email']
+        model = Vinos
+        fields = ['nombre', 'cantidad', ]
 
-class ProfesorFormulario(forms.ModelForm):
+class Bebida_Sa_Formulario(forms.ModelForm):
     class Meta:
-        model = Profesores
-        fields = ['nombre', 'apellido', 'email']
+        model = Bebida_sa
+        fields = ['nombre', 'cantidad', ]
         
+
+     

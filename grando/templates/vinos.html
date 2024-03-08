@@ -1,4 +1,3 @@
-
 {% load  static  %}
 
 
@@ -30,9 +29,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="{% url "alumnos" %}">Alumnos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url "cursos" %}">Cursos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url "profesores" %}">Profesores</a></li>
+                        
+                        <li class="nav-item"><a class="nav-link" href="{% url "formulario" %}">Bebidas Blancas</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url "bebida_sa_nueva" %}">Bebidas sin Alcohol</a></li>
+                       
                     </ul>
                 </div>
             </div>
@@ -42,7 +42,7 @@
             <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
                 <div class="d-flex justify-content-center">
                     <div class="text-center">
-                        <h1 class="mx-auto my-0 text-uppercase">Agregar Profesor</h1>
+                        <h1 class="mx-auto my-0 text-uppercase">Vinos</h1>
                 
                         
                     </div>
@@ -54,30 +54,89 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8">
-                        
+                        <h2 class="text-white mb-4">Built with Bootstrap 5</h2>
+                        <p class="text-white-50">
+                            Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right now, simply download the template on
+                            <a href="https://startbootstrap.com/theme/grayscale/">the preview page.</a>
+                            The theme is open source, and you can use it for any purpose, personal or commercial.
+                        </p>
                     </div>
                 </div>
                 <img class="img-fluid" src="assets/img/ipad.png" alt="..." />
             </div>
         </section>
 
+
+        <h1>Buscar Vinos</h1>
+        <form action="{% url 'buscar_vinos' %}" method="GET">
+            <input type="text" name="query" placeholder="Buscar vino...">
+            <button type="submit">Buscar</button>
+        </form>
     
+        {% if resultados %}
+            <h2>Resultados de la Búsqueda</h2>
+            {% for tipo, lista_vinos in resultados.items %}
+                <h3>{{ tipo }}</h3>
+                <ul>
+                    {% for vino in lista_vinos %}
+                        <li>{{ vino }}</li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+       
+        {% endif %}
+        
+
+
+        <h2>Cabernet Sauvignon</h2>
+<ul>
+    <li>caymus vineyards cabernet sauvignon</li>
+    <li>silver oak alexander valley cabernet sauvignon</li>
+    <li>joseph phelps insignia</li>
+    <li>stag's leap wine cellars artemis cabernet sauvignon</li>
+    <li>opus one</li>
+</ul>
+
+<h2>Merlot</h2>
+<ul>
+    <li>duckhorn vineyards three palms vineyard merlot</li>
+    <li>shafer vineyards merlot</li>
+    <li>pride mountain vineyards merlot</li>
+    <li>twomey merlot by silver oak</li>
+    <li>leonetti cellar merlot</li>
+</ul>
+
+<h2>Chardonnay</h2>
+<ul>
+    <li>chateau montelena chardonnay</li>
+    <li>kistler vineyards chardonnay</li>
+    <li>peter michael winery belle cote chardonnay</li>
+    <li>shafer red shoulder ranch chardonnay</li>
+    <li>far niente chardonnay</li>
+</ul>
+
+<h2>Syrah</h2>
+<ul>
+    <li>alban vineyards reva alban estate syrah</li>
+    <li>sine qua non syrah</li>
+    <li>pax syrah</li>
+    <li>andrew murray vineyards tous les jours syrah</li>
+    <li>qupé syrah</li>
+</ul>
+
         
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Agregar Profesor</button>
+            <button type="submit">Agregar Vino</button>
         </form>
-     
+        
 
 
-
+        
+        
        
-
-
-
-
-
+        <!-- Footer-->
         <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; Your Website 2023</div></footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -90,5 +149,3 @@
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
 </html>
-
-

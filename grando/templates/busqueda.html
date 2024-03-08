@@ -30,9 +30,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="{% url "alumnos" %}">Alumnos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url "cursos" %}">Cursos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url "profesores" %}">Profesores</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url "alumnos" %}">Pedidos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url "formulario" %}">Bebidas Blancas</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url "bebida_sa_nueva" %}">Bebidas sin Alcohol</a></li>
                     </ul>
                 </div>
             </div>
@@ -62,20 +62,20 @@
         </section>
 
     
-        
-        <form action ="./buscar" method="GET">
-            <input type="number" name="camada" id="camada">
-            
-            <input type="submit" value="buscar">
-           
-        </form>
-     
+        <h1>Resultados de la Búsqueda</h1>
 
-
-
-       
-
-
+        {% if resultados %}
+            {% for tipo, lista_vinos in resultados.items %}
+                <h2>{{ tipo }}</h2>
+                <ul>
+                    {% for vino in lista_vinos %}
+                        <li>{{ vino }}</li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        {% else %}
+            <p>No se encontraron resultados para la búsqueda.</p>
+        {% endif %}
 
 
 

@@ -29,12 +29,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="{% url "cursos" %}">Cursos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url "formulario" %}">Agregar Curso</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url "profesores" %}">Profesores</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url "profesornuevo" %}">Agregar Profesor</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url "busqueda" %}">Busqueda</a></li>
-                    </ul>
+                        <li class="nav-item"><a class="nav-link" href="{% url "pedido" %}">Pedido</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url "vino_nuevo" %}">Vinos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url "formulario" %}">Bebidas Blancas</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url "bebida_sa_nueva" %}">Bebidas sin Alcohol</a></li>
+                      
                 </div>
             </div>
         </nav>
@@ -43,43 +42,33 @@
             <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
                 <div class="d-flex justify-content-center">
                     <div class="text-center">
-                        <h1 class="mx-auto my-0 text-uppercase">Agregar alumno</h1>
-                
+                        <h1 class="mx-auto my-0 text-uppercase">Login</h1>
+                        <li class="nav-item"><a class="nav-link" href="{% url "register" %}" style="font-size: larger;">REGISTRATE</a></li>
+
+                        
                         
                     </div>
                 </div>
             </div>
+            
+
+
         </header>
-        <!-- About-->
-        <section class="about-section text-center" id="about">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8">
-                        <h2 class="text-white mb-4">Built with Bootstrap 5</h2>
-                        <p class="text-white-50">
-                            Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right now, simply download the template on
-                            <a href="https://startbootstrap.com/theme/grayscale/">the preview page.</a>
-                            The theme is open source, and you can use it for any purpose, personal or commercial.
-                        </p>
-                    </div>
-                </div>
-                <img class="img-fluid" src="assets/img/ipad.png" alt="..." />
-            </div>
+        
+        <section class="container" >
+            <form action="" method="POST"  style="text-align: center;">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Iniciar Sesion</button>
+            </form>
+        <br>
         </section>
-        
-
-        
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Agregar Alumno</button>
-        </form>
-        
 
 
         
-        
-       
+
+
+
         <!-- Footer-->
         <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; Your Website 2023</div></footer>
         <!-- Bootstrap core JS-->

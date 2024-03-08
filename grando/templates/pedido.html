@@ -1,4 +1,3 @@
-
 {% load  static  %}
 
 
@@ -30,9 +29,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="{% url "alumnos" %}">Alumnos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url "cursos" %}">Cursos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url "profesores" %}">Profesores</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url "vino_nuevo" %}">Vinos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url "formulario" %}">Bebidas Blancas</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url "bebida_sa_nueva" %}">Bebidas sin Alcohol</a></li>
+                       
                     </ul>
                 </div>
             </div>
@@ -42,7 +42,7 @@
             <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
                 <div class="d-flex justify-content-center">
                     <div class="text-center">
-                        <h1 class="mx-auto my-0 text-uppercase">Agregar Curso</h1>
+                        <h1 class="mx-auto my-0 text-uppercase">Pedido</h1>
                 
                         
                     </div>
@@ -50,34 +50,64 @@
             </div>
         </header>
         <!-- About-->
-        <section class="about-section text-center" id="about">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8">
-                        
-                    </div>
-                </div>
+
                 <img class="img-fluid" src="assets/img/ipad.png" alt="..." />
             </div>
-        </section>
-
-    
-        
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Agregar Curso</button>
-        </form>
-     
-
-
-
+            <section class="projects-section bg-light" id="projects">
+                <div class="container px-4 px-lg-5">
+                    <!-- Featured Project Row-->
+                  
+                  
+                    <h1>Vinos</h1>
+                    <ul>
+                        {% for vino in vino %}
+                        <li>{{ vino.nombre }} {{ vino.cantidad }} 
+                            <form method="post" action="{% url 'eliminar_vino' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="vino_id" value="{{ vino.id }}">
+                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                            </form>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div> <!-- Project One Row-->
+            </section>    
+            <section class="projects-section bg-light" id="projects">
+                <div class="container px-4 px-lg-5">
+                    <!-- Featured Project Row-->
+                    <h1>Bebidas Blancas</h1>
+                    <ul>
+                        {% for bebida_blanca in bebida_blanca %}
+                        <li>{{ bebida_blanca.nombre }} - Cantidad: {{ bebida_blanca.cantidad }}
+                            <form method="post" action="{% url 'eliminar_bebida_blanca' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="bebida_blanca_id" value="{{ bebida_blanca.id }}">
+                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                            </form>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div> <!-- Project One Row-->
+            </section>
+            
+            <section class="projects-section bg-light" id="projects">
+                <div class="container px-4 px-lg-5"> 
+            <h1> Bebidas sin Alcohol</h1>
+            <ul>
+                {% for bebida_sa in bebida_sa %}
+                <li>{{ bebida_sa.nombre }}  Cantidad: {{ bebida_sa.cantidad }}
+                    <form method="post" action="{% url 'eliminar_bebida_sa' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="bebida_sa_id" value="{{ bebida_sa.id }}">
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+                   </div> <!-- Project One Row-->
+            </section>
        
-
-
-
-
-
+        <!-- Footer-->
         <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; Your Website 2023</div></footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -90,5 +120,3 @@
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
 </html>
-
-

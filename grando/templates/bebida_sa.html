@@ -1,3 +1,4 @@
+
 {% load  static  %}
 
 
@@ -29,13 +30,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="{% url "formulario" %}">Agregar Curso</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url "alumnos" %}">Alumnos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url "alumnonuevo" %}">Agregar Alumno</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url "profesores" %}">Profesores</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url "profesornuevo" %}">Agregar Profesor</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url "busqueda" %}">Busqueda</a></li>
-                    </ul>
+                        <<li class="nav-item"><a class="nav-link" href="{% url "vino_nuevo" %}">Vinos</a></li>
+                        
+                        <li class="nav-item"><a class="nav-link" href="{% url "formulario" %}">Bebidas Blancas</a></li>
+                      
                 </div>
             </div>
         </nav>
@@ -44,7 +42,7 @@
             <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
                 <div class="d-flex justify-content-center">
                     <div class="text-center">
-                        <h1 class="mx-auto my-0 text-uppercase">Cursos</h1>
+                        <h1 class="mx-auto my-0 text-uppercase">Bebidas sin alcohol</h1>
                 
                         
                     </div>
@@ -63,17 +61,95 @@
             </div>
         </section>
 
-        <section class="projects-section bg-light" id="projects">
-            <div class="container px-4 px-lg-5">
-                <!-- Featured Project Row-->
-                <h1>Lista de Cursos</h1>
-                <ul>
-                    {% for curso in cursos %}
-                    <li>{{ curso.nombre }} - Camada: {{ curso.camada }}</li>
-                    {% endfor %}
-                </ul>
-            </div> <!-- Project One Row-->
-        </section>    
+        <h1>Buscar Bebidas Sin Alcohol</h1>
+        <form action="{% url 'buscar_bebidas_sin_alcohol' %}" method="GET">
+            <input type="text" name="query" placeholder="Buscar bebida sin alcohol...">
+            <button type="submit">Buscar</button>
+        </form>
+
+
+
+
+        {% if resultados %}
+        <h2>Resultados de la Búsqueda</h2>
+        {% for tipo, lista_bebidas in resultados.items %}
+            <h3>{{ tipo }}</h3>
+            <ul>
+                {% for bebida in lista_bebidas %}
+                    <li>{{ bebida }}</li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+   
+    {% endif %}
+
+
+
+
+
+
+
+
+        <h1>Variedades de bebidas sin alcohol</h1>
+
+        <h2>Refrescos y Aguas</h2>
+        <ul>
+            <li>Coca-Cola</li>
+            <li>Pepsi</li>
+            <li>Sprite</li>
+            <li>Fanta</li>
+            <li>7-Up</li>
+            <li>Mountain Dew</li>
+            <li>Mirinda</li>
+            <li>Limonada</li>
+            <li>Tónica</li>
+            <li>Agua Mineral</li>
+        </ul>
+    
+        <h2>Jugos y Néctares</h2>
+        <ul>
+            <li>Jugo de Naranja</li>
+            <li>Jugo de Manzana</li>
+            <li>Jugo de Piña</li>
+            <li>Jugo de Uva</li>
+            <li>Jugo de Mango</li>
+            <li>Jugo de Guayaba</li>
+            <li>Néctar de Durazno</li>
+            <li>Néctar de Ciruela</li>
+            <li>Néctar de Pera</li>
+            <li>Néctar de Maracuyá</li>
+        </ul>
+    
+        <h2>Bebidas Sin Alcohol Especiales</h2>
+        <ul>
+            <li>Sidra sin Alcohol</li>
+            <li>Cerveza sin Alcohol</li>
+            <li>Vino sin Alcohol</li>
+            <li>Cócteles Sin Alcohol</li>
+            <li>Bebidas Energéticas Sin Alcohol</li>
+            <li>Té Helado sin Alcohol</li>
+            <li>Café Descafeinado</li>
+            <li>Smoothies</li>
+            <li>Malta sin Alcohol</li>
+            <li>Horchata</li>
+        </ul>
+    
+        
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Agregar Bebida</button>
+        </form>
+     
+
+
+
+       
+
+
+
+
+
         <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; Your Website 2023</div></footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -86,3 +162,5 @@
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
 </html>
+
+

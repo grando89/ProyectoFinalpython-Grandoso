@@ -1,3 +1,4 @@
+
 {% load  static  %}
 
 
@@ -22,17 +23,17 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand"href="{% url "index" %}">Inicio </a>
+                <a class="navbar-brand" href="{% url "index" %}">Inicio </a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="{% url "alumnos" %}">Alumnos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url "cursos" %}">Cursos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url "formulario" %}">Formulario</a></li>
-                    </ul>
+                        <li class="nav-item"><a class="nav-link" href="{% url "vino_nuevo" %}">Vinos</a></li>
+                        
+                        <li class="nav-item"><a class="nav-link" href="{% url "bebida_sa_nueva" %}">Bebidas sin Alcohol</a></li>
+                       
                 </div>
             </div>
         </nav>
@@ -41,7 +42,7 @@
             <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
                 <div class="d-flex justify-content-center">
                     <div class="text-center">
-                        <h1 class="mx-auto my-0 text-uppercase">Profesores</h1>
+                        <h1 class="mx-auto my-0 text-uppercase">Bebidas blancas</h1>
                 
                         
                     </div>
@@ -53,35 +54,102 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8">
-                        <h2 class="text-white mb-4">Built with Bootstrap 5</h2>
-                        <p class="text-white-50">
-                            Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right now, simply download the template on
-                            <a href="https://startbootstrap.com/theme/grayscale/">the preview page.</a>
-                            The theme is open source, and you can use it for any purpose, personal or commercial.
-                        </p>
+                        
                     </div>
                 </div>
                 <img class="img-fluid" src="assets/img/ipad.png" alt="..." />
             </div>
         </section>
-        <!-- Projects-->
+
+     
 
 
-
-
-
-
-
-        <h1>Lista de Profesores</h1>
-        <ul>
-            {% for profesor in profesores %}
-            <li>{{ profesor.nombre }} {{ profesor.apellido }}  {{profesor.email}}</li>
+        <h1>Buscar Bebidas Blancas</h1>
+        <form action="{% url 'buscar_bebidas_blancas' %}" method="GET">
+            <input type="text" name="query" placeholder="Buscar bebida...">
+            <button type="submit">Buscar</button>
+        </form>
+        
+        {% if resultados %}
+            <h2>Resultados de la Búsqueda</h2>
+            {% for tipo, lista_bebidas in resultados.items %}
+                <h3>{{ tipo }}</h3>
+                <ul>
+                    {% for bebida in lista_bebidas %}
+                        <li>{{ bebida }}</li>
+                    {% endfor %}
+                </ul>
             {% endfor %}
+        
+        {% endif %}
+
+
+
+
+
+
+
+
+        <h1>Variedades de bebidas blancas</h1>
+
+        <h2>Vodka</h2>
+        <ul>
+            <li>Absolut Vodka</li>
+            <li>Grey Goose Vodka</li>
+            <li>Belvedere Vodka</li>
+            <li>Ketel One Vodka</li>
+            <li>Stolichnaya Vodka</li>
+            <li>Tito's Handmade Vodka</li>
+            <li>Smirnoff Vodka</li>
+            <li>Finlandia Vodka</li>
+            <li>Skyy Vodka</li>
+            <li>Chopin Vodka</li>
         </ul>
+        
+        <h2>Whisky</h2>
+        <ul>
+            <li>Jack Daniel's Tennessee Whiskey Whisky</li>
+            <li>Johnnie Walker Black Label Whisky</li>
+            <li>Jameson Irish Whiskey Whisky</li>
+            <li>Macallan 12 Year Old Whisky</li>
+            <li>Glenlivet 12 Year Old Whisky</li>
+            <li>Bulleit Bourbon Whisky</li>
+            <li>Buffalo Trace Whisky</li>
+            <li>Laphroaig 10 Year Old Whisky</li>
+            <li>Woodford Reserve Whisky</li>
+            <li>Maker's Mark Bourbon Whisky</li>
+        </ul>
+        
+        <h2>Gin</h2>
+        <ul>
+            <li>Tanqueray Gin</li>
+            <li>Bombay Sapphire Gin</li>
+            <li>Hendrick's Gin</li>
+            <li>Beefeater Gin</li>
+            <li>Gordon's Gin</li>
+            <li>Plymouth Gin</li>
+            <li>Broker's Gin</li>
+            <li>No. 209 Gin</li>
+            <li>Monkey 47 Gin</li>
+            <li>Aviation Gin</li>
+        </ul>
+        
+        
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Agregar bebida</button>
+        </form>
+     
 
 
 
-        <!-- Footer-->
+       
+
+
+
+
+
         <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; Your Website 2023</div></footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -94,3 +162,5 @@
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
 </html>
+
+
